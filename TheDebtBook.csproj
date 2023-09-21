@@ -58,8 +58,19 @@
 
 	<ItemGroup>
 	  <Folder Include="Model\" />
-	  <Folder Include="View\" />
 	  <Folder Include="ViewModel\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="View\AddDebter.xaml.cs">
+	    <DependentUpon>AddDebter.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\AddDebter.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
