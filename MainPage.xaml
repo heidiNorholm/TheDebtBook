@@ -1,46 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TheDebtBook.View"
              x:Class="TheDebtBook.MainPage"
-             BackgroundColor="LightGray">
+             BindingContext="{x:Static local:ViewModelLocator.MainPageViewModel}">
 
-    <ScrollView>
-        <Grid RowDefinitions="*,4*"
-              ColumnDefinitions="2*,*">
-            <Label 
-                Grid.Row="0"
-                Grid.Column="0"
-                Text="Debters"
-                WidthRequest="200"
-                HeightRequest="50"
-                HorizontalOptions="Center"
-                FontSize="30">
-            </Label>
-
-            <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                BackgroundColor="White"
-                VerticalOptions="Start"
-                HorizontalOptions="Center"
-                WidthRequest="300"
-                HeightRequest="400">
-            </Label>
-
-
-            <Button
-                Grid.Row="1"
-                Grid.Column="1"
-                Text="Add"
-                WidthRequest="200"
-                HeightRequest="50"
-                BackgroundColor="Grey"
-                VerticalOptions="Start"
-                >
-
-            </Button>
-            
-        </Grid>
-    </ScrollView>
+    <StackLayout>
+        <Label Text="Debtors and Creditors" FontSize="Title" HorizontalOptions="Center" Margin="0,20,0,10" />
+        <ListView ItemsSource="{Binding Debtors}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding AmountOwed, StringFormat='Amount Owed: {0:C}'}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 
 </ContentPage>
