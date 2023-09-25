@@ -1,12 +1,11 @@
-﻿namespace TheDebtBook;
-
-public partial class MainPage : ContentPage
+﻿namespace TheDebtBook
 {
-
-	public MainPage()
-	{
-		InitializeComponent();
-	}
-
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MainPage : ContentPage
+    {
+        public MainPage()
+        {
+            InitializeComponent();
+        }
+    }
 }
-
