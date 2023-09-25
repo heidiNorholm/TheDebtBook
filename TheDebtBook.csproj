@@ -62,13 +62,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="View\AddDebter.xaml.cs">
-	    <DependentUpon>AddDebter.xaml</DependentUpon>
+	  <Compile Update="View\AddDebterPage.xaml.cs">
+	    <DependentUpon>AddDebterPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\RegisteredDebitsPage.xaml.cs">
+	    <DependentUpon>RegisteredDebitsPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="View\AddDebter.xaml">
+	  <MauiXaml Update="View\AddDebterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
