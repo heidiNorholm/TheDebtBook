@@ -1,4 +1,6 @@
-﻿namespace TheDebtBook
+﻿using TheDebtBook.View;
+
+namespace TheDebtBook
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
@@ -8,10 +10,9 @@
             InitializeComponent();
         }
 
-        private void OnAddButton_Clicked(object sender, EventArgs e)
+        private async void OnAddButton_Clicked(object sender, EventArgs e)
         {
-            
-            // Åben AddDebterPage
+            await Navigation.PushAsync(new AddDebterPage());
         }
     }
 }

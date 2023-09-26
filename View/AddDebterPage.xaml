@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TheDebtBook.View.NewPage1"
-             Title="AddDepter">
+             x:Class="TheDebtBook.View.AddDebterPage"
+             Title="AddDebterPage">
     <VerticalStackLayout>
         <Label 
             Text="Add debter"
@@ -10,23 +10,40 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Entry
-            Text="Name"
-            x:Name="DebterName"
-            WidthRequest="200"
-            HeightRequest="50"
             HorizontalTextAlignment="Start"
             VerticalTextAlignment="Center"
+            Placeholder="Name"
+            x:Name="DebterName"
+            WidthRequest="200"
+            HeightRequest="25"
             Margin="10">
         </Entry>
         <Entry
             x:Name="InitialValue"
-            Text="Initial Value"
+            Placeholder="Initial Value"
             WidthRequest="200"
-            HeightRequest="50"
+            HeightRequest="25"
             HorizontalTextAlignment="Start"
             VerticalTextAlignment="Center"
             Margin="10">
         </Entry>
+        <HorizontalStackLayout
+            HorizontalOptions="Center">
+            <Button
+                WidthRequest="100"
+                HeightRequest="50"
+                Text="Save"
+                x:Name="SaveButton"
+                Clicked="OnSaveButton_Clicked">
+            </Button>
+            <Button
+                x:Name="CancelButton"
+                WidthRequest="100"
+                HeightRequest="50"
+                Text="Cancel"
+                Clicked="OnCancelButton_Clicked">
+            </Button>
+        </HorizontalStackLayout>
 
 
     </VerticalStackLayout>
