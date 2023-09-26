@@ -1,5 +1,6 @@
 // MainPageViewModel.cs
 using System.Collections.ObjectModel;
+using TheDebtBook.Data;
 
 namespace DebtBook.ViewModels
 {
