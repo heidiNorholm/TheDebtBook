@@ -2,11 +2,32 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TheDebtBook.View.NewPage1"
-             Title="NewPage1">
+             Title="AddDepter">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Add debter"
+            FontSize="18"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Entry
+            Text="Name"
+            x:Name="DebterName"
+            WidthRequest="200"
+            HeightRequest="50"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            Margin="10">
+        </Entry>
+        <Entry
+            x:Name="InitialValue"
+            Text="Initial Value"
+            WidthRequest="200"
+            HeightRequest="50"
+            HorizontalTextAlignment="Start"
+            VerticalTextAlignment="Center"
+            Margin="10">
+        </Entry>
+
+
     </VerticalStackLayout>
 </ContentPage>

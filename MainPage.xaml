@@ -19,6 +19,17 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </StackLayout>
 
+        <Button
+            Text="Add"
+            WidthRequest="200"
+            HeightRequest="50"
+            FontSize="20"
+            FontAttributes="Bold"
+            Margin="40"
+            VerticalOptions="Start"
+            HorizontalOptions="Start"
+            Clicked="OnAddButton_Clicked">
+        </Button>
+    </StackLayout>
 </ContentPage>
