@@ -22,5 +22,14 @@ namespace DebtBook.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
+
+        public void RaisePropertyChanged(params string[] properties)
+        {
+            foreach (var propertyName in properties)
+            {
+                PropertyChanged?.Invoke(this, new
+                    PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

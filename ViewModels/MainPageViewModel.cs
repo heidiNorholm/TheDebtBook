@@ -1,5 +1,9 @@
 // MainPageViewModel.cs
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.ComponentModel;
+using TheDebtBook.Data;
+using System.Xml.Linq;
 using TheDebtBook.Data;
 
 namespace DebtBook.ViewModels
@@ -7,6 +11,8 @@ namespace DebtBook.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
         private ObservableCollection<Debtor> debtors;
+        private readonly DataBase _database;
+
 
         public ObservableCollection<Debtor> Debtors
         {
@@ -16,6 +22,8 @@ namespace DebtBook.ViewModels
 
         public MainPageViewModel()
         {
+            _database = new DataBase();
+            
             // Sample data (replace with actual data retrieval)
             Debtors = new ObservableCollection<Debtor>
             {
@@ -25,5 +33,7 @@ namespace DebtBook.ViewModels
                 // Add more debtors as needed
             };
         }
+
+
     }
 }

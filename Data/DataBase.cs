@@ -44,14 +44,14 @@ namespace TheDebtBook.Data
             return await _connection.Table<Debtor>().ToListAsync();
         }
 
-        public async Task<Debtor> GetTodo(int id)
+        public async Task<Debtor> GetDebtor(int id)
         {
             var query = _connection.Table<Debtor>().Where(t => t.Id == id);
 
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<int> AddTodo(Debtor item)
+        public async Task<int> AddDebtor(Debtor item)
         {
             return await _connection.InsertAsync(item);
         }

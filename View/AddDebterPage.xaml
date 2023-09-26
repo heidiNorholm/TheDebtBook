@@ -8,7 +8,7 @@
             Text="Add debter"
             FontSize="18"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            HorizontalOptions="Center"/>
         <Entry
             HorizontalTextAlignment="Start"
             VerticalTextAlignment="Center"
@@ -16,7 +16,8 @@
             x:Name="DebterName"
             WidthRequest="200"
             HeightRequest="25"
-            Margin="10">
+            Margin="10"
+            Text="{Binding NewDebtorName}">
         </Entry>
         <Entry
             x:Name="InitialValue"
@@ -25,7 +26,8 @@
             HeightRequest="25"
             HorizontalTextAlignment="Start"
             VerticalTextAlignment="Center"
-            Margin="10">
+            Margin="10"
+            Text="{Binding NewDebtorAmount}">
         </Entry>
         <HorizontalStackLayout
             HorizontalOptions="Center">
@@ -34,7 +36,8 @@
                 HeightRequest="50"
                 Text="Save"
                 x:Name="SaveButton"
-                Clicked="OnSaveButton_Clicked">
+                Clicked="OnSaveButton_Clicked"
+                Command="{Binding AddNewDebtor}">
             </Button>
             <Button
                 x:Name="CancelButton"
