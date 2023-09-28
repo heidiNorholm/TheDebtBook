@@ -13,6 +13,7 @@ public class AddDebtorViewModel : BaseViewModel
     public int NewDebtorId { get; set; }
     public string NewDebtorName { get; set; }
     public ICommand AddDebtorCommand { get; set; }
+    private int id = 0;
 
     // Properties and methods related to the Add Debtor Page
     public AddDebtorViewModel()
@@ -29,12 +30,14 @@ public class AddDebtorViewModel : BaseViewModel
             Id = NewDebtorId,
             Name = NewDebtorName
         };
+
         var inserted = await _database.AddDebtor(debtor);
         if (inserted != 0)
         {
+            
             mainPageViewModel.Debtors.Add(debtor);
             NewDebtorAmount = Decimal.Zero;
-            NewDebtorId = Int16.MinValue; // skal måske rettes så det bliver af en anden type af int
+            NewDebtorId = id++;
             NewDebtorName = String.Empty;
             RaisePropertyChanged(nameof(NewDebtorAmount), nameof(NewDebtorId), nameof(NewDebtorName));
         }

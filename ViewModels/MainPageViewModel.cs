@@ -33,7 +33,5 @@ namespace DebtBook.ViewModels
                 // Add more debtors as needed
             };
         }
-
-
     }
 }
