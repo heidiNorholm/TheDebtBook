@@ -16,6 +16,7 @@ public partial class AddDebterPage : ContentPage
     {
         // Noget med at opdatere data i listen
 
+
         await Navigation.PopAsync();
     }
 }
