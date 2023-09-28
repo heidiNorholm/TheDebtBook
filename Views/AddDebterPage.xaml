@@ -36,8 +36,8 @@
                 HeightRequest="50"
                 Text="Save"
                 x:Name="SaveButton"
-                Clicked="OnSaveButton_Clicked"
-                Command="{Binding AddNewDebtor}">
+                Command="{Binding AddDebtorCommand}"
+                Clicked="OnSaveButton_Clicked">
             </Button>
             <Button
                 x:Name="CancelButton"

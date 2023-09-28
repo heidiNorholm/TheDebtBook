@@ -5,7 +5,8 @@ public partial class AddDebterPage : ContentPage
 	public AddDebterPage()
 	{
 		InitializeComponent();
-	}
+        BindingContext = new AddDebtorViewModel();
+    }
 
     private async void OnCancelButton_Clicked(object sender, EventArgs e)
     {

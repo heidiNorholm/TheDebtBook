@@ -42,5 +42,4 @@ public class AddDebtorViewModel : BaseViewModel
             RaisePropertyChanged(nameof(NewDebtorAmount), nameof(NewDebtorId), nameof(NewDebtorName));
         }
     }
-
 }

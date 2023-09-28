@@ -4,7 +4,6 @@ using System.Windows.Input;
 using System.ComponentModel;
 using TheDebtBook.Data;
 using System.Xml.Linq;
-using TheDebtBook.Data;
 
 namespace DebtBook.ViewModels
 {
@@ -23,15 +22,24 @@ namespace DebtBook.ViewModels
         public MainPageViewModel()
         {
             _database = new DataBase();
-            
-            // Sample data (replace with actual data retrieval)
-            Debtors = new ObservableCollection<Debtor>
+            _ = LoadDebtorsAsync();
+        }
+
+        public async Task LoadDebtorsAsync()
+        {
+            try
             {
-                new Debtor { Name = "John Doe", AmountOwed = 100.00M },
-                new Debtor { Name = "Alice Smith", AmountOwed = 50.00M },
-                new Debtor { Name = "Bob Johnson", AmountOwed = -25.00M } // Negative amount indicates creditor
-                // Add more debtors as needed
-            };
+                var debtorsFromDatabase = await _database.GetDebtors(); // Assuming GetDebtors is an async method.
+
+                foreach (var debtor in debtorsFromDatabase)
+                {
+                    Debtors.Add(debtor);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions appropriately, e.g., log or display an error message.
+            }
         }
     }
 }
