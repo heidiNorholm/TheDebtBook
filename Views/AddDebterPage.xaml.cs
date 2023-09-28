@@ -21,7 +21,7 @@ public partial class AddDebterPage : ContentPage
     {
         // Noget med at opdatere data i listen
 
-
+        OnPropertyChanged();
         await Navigation.PopAsync();
     }
 }

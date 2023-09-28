@@ -36,7 +36,7 @@ namespace DebtBook.ViewModels
                 foreach (var debtor in debtorsFromDatabase)
                 {
                     Debtors.Add(debtor);
-                    //Debtors.Add(debtor);
+                    OnPropertyChanged();
                 }
             }
             catch (Exception ex)

@@ -18,5 +18,16 @@ namespace TheDebtBook
         {
             await Navigation.PushAsync(new AddDebterPage(vm));
         }
+
+
+
+
+        private async void OnDebtorItemTapped(object sender, TappedEventArgs e)
+        {
+            if (sender is Label label && label.BindingContext is Debtor selectedDebtor)
+            {
+                await Navigation.PushAsync(new DebtorDetailsPage(selectedDebtor));
+            }
+        }
     }
 }

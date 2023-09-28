@@ -66,6 +66,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\DebtorDetailsPage.xaml.cs">
+	    <DependentUpon>DebtorDetailsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\AddDebter.xaml.cs">
 	    <DependentUpon>AddDebter.xaml</DependentUpon>
 	  </Compile>

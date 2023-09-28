@@ -12,7 +12,11 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding Name}" FontAttributes="Bold">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnDebtorItemTapped" CommandParameter="{Binding .}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                             <Label Text="{Binding AmountOwed, StringFormat='Amount Owed: {0:C}'}" />
                         </StackLayout>
                     </ViewCell>

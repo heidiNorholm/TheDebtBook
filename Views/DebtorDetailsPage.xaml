@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TheDebtBook.View.DebtorDetailsPage">
+    <ContentPage.Content>
+        <Grid
+            RowDefinitions="*,4*,*"
+            ColumnDefinitions="2*,*">
+            <!--Ændre dette så det binder til navn-->
+            <Label 
+                Grid.Row="0"
+                Grid.Column="0"
+                Text="{Binding PageTitle}" 
+                FontSize="Title" 
+                HorizontalOptions="Center" 
+                Margin="0,20,0,10" /> 
+            <ListView 
+                Grid.Row="1"
+                Grid.Column="0"
+                ItemsSource="{Binding Debtors}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Amount, StringFormat='Amount Owed: {0:C}'}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Text="Close"
+                WidthRequest="200"
+                HeightRequest="50"
+                FontSize="20"
+                FontAttributes="Bold"
+                Margin="40"
+                VerticalOptions="Start"
+                HorizontalOptions="Start"
+                Clicked="OnCloseButton_Clicked">
+            </Button>
+
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="1">
+                <Entry
+                    Text="Enter Value">
+                </Entry>
+                <Button
+                    Text="Add Value"
+                    Clicked="OnAddValueButton_Clicked">
+                </Button>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
