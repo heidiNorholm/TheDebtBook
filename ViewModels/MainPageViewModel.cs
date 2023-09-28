@@ -9,15 +9,15 @@ namespace DebtBook.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private ObservableCollection<Debtor> debtors;
-        private readonly DataBase _database;
+        //private ObservableCollection<Debtor> debtors;
+        internal DataBase _database;
 
 
-        public ObservableCollection<Debtor> Debtors
-        {
-            get { return debtors; }
-            set { SetProperty(ref debtors, value); }
-        }
+        //public ObservableCollection<Debtor> Debtors
+        //{
+        //    get { return debtors; }
+        //    set { SetProperty(ref debtors, value); }
+        //}
 
         public MainPageViewModel()
         {
@@ -33,7 +33,8 @@ namespace DebtBook.ViewModels
 
                 foreach (var debtor in debtorsFromDatabase)
                 {
-                    Debtors.Add(debtor);
+                    _database.AddDebtor(debtor);
+                    //Debtors.Add(debtor);
                 }
             }
             catch (Exception ex)
@@ -41,5 +42,11 @@ namespace DebtBook.ViewModels
                 // Handle exceptions appropriately, e.g., log or display an error message.
             }
         }
+
+        internal DataBase GetDataBase()
+        {
+            return _database;
+        }
+
     }
 }

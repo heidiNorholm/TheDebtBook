@@ -1,11 +1,15 @@
+using DebtBook.ViewModels;
+
 namespace TheDebtBook.View;
 
 public partial class AddDebterPage : ContentPage
 {
-	public AddDebterPage()
+    private MainPageViewModel mainPageViewModel;
+	public AddDebterPage(MainPageViewModel mainPageViewModel)
 	{
-		InitializeComponent();
-        BindingContext = new AddDebtorViewModel();
+        this.mainPageViewModel = mainPageViewModel;
+        InitializeComponent();
+        BindingContext = new AddDebtorViewModel(mainPageViewModel);
     }
 
     private async void OnCancelButton_Clicked(object sender, EventArgs e)

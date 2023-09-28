@@ -7,8 +7,8 @@ using System.Windows.Input;
 
 public class AddDebtorViewModel : BaseViewModel
 {
-    private MainPageViewModel mainPageViewModel;
-    private readonly DataBase _database;
+    public MainPageViewModel mainPageViewModel;
+    internal DataBase _database;
     public decimal NewDebtorAmount { get; set; }
     public int NewDebtorId { get; set; }
     public string NewDebtorName { get; set; }
@@ -16,8 +16,10 @@ public class AddDebtorViewModel : BaseViewModel
     private int id = 0;
 
     // Properties and methods related to the Add Debtor Page
-    public AddDebtorViewModel()
+    public AddDebtorViewModel(MainPageViewModel mainPageViewModel)
     {
+        this.mainPageViewModel = mainPageViewModel; // Initialize mainPageViewModel
+        _database = mainPageViewModel.GetDataBase();
         AddDebtorCommand = new Command(async () => await AddNewDebtor());
     }
 
@@ -35,7 +37,8 @@ public class AddDebtorViewModel : BaseViewModel
         if (inserted != 0)
         {
             
-            mainPageViewModel.Debtors.Add(debtor);
+            //mainPageViewModel.Debtors.Add(debtor);
+            _database.AddDebtor(debtor);
             NewDebtorAmount = Decimal.Zero;
             NewDebtorId = id++;
             NewDebtorName = String.Empty;
