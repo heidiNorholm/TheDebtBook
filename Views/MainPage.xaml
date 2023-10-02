@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:TheDebtBook.View"
              x:Class="TheDebtBook.MainPage"
              BindingContext="{x:Static local:ViewModelLocator.MainPageViewModel}">
+    <!-- Applying tehme to contentpage globally-->
+
+      <ContentPage.BackgroundColor>
+        <OnPlatform x:TypeArguments="Color">
+            <On Platform="iOS" Value="{Binding ThemePrimaryColor}" />
+            <On Platform="Android" Value="{Binding ThemePrimaryColor}" />
+            <On Platform="WinPhone" Value="{Binding ThemePrimaryColor}" />
+        </OnPlatform>
+    </ContentPage.BackgroundColor>
+
 
     <StackLayout>
         <Label Text="Debtors and Creditors" FontSize="Title" HorizontalOptions="Center" Margin="0,20,0,10" />
@@ -26,14 +36,10 @@
 
         <Button
             Text="Add"
-            WidthRequest="200"
-            HeightRequest="50"
-            FontSize="20"
-            FontAttributes="Bold"
-            Margin="40"
-            VerticalOptions="Start"
-            HorizontalOptions="Start"
-            Clicked="OnAddButton_Clicked">
+            Style="{StaticResource GlobalButtonStyle}"
+            Clicked="OnAddButton_Clicked"
+            BackgroundColor="{Binding ThemeButtonBackgroundColor}"
+            TextColor="{Binding ThemeButtonTextColor}">
         </Button>
     </StackLayout>
 </ContentPage>

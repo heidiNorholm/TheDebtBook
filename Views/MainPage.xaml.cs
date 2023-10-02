@@ -11,16 +11,13 @@ namespace TheDebtBook
         {
             InitializeComponent();
             vm = new MainPageViewModel();
-            BindingContext = vm; 
+            BindingContext = vm;
         }
 
         private async void OnAddButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddDebterPage(vm));
         }
-
-
-
 
         private async void OnDebtorItemTapped(object sender, TappedEventArgs e)
         {
