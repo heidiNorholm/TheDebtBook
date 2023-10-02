@@ -80,4 +80,10 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Resources\Themes\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Resources\Themes\" />
+	</ItemGroup>
 </Project>
