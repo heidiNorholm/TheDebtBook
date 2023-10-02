@@ -1,9 +1,7 @@
 // MainPageViewModel.cs
 using System.Collections.ObjectModel;
-using System.Windows.Input;
-using System.ComponentModel;
 using TheDebtBook.Data;
-using System.Xml.Linq;
+
 
 namespace DebtBook.ViewModels
 {
@@ -41,7 +39,7 @@ namespace DebtBook.ViewModels
             }
             catch (Exception ex)
             {
-                // Handle exceptions appropriately, e.g., log or display an error message.
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
         }
 
