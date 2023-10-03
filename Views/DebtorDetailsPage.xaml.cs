@@ -18,12 +18,18 @@ public partial class DebtorDetailsPage : ContentPage
 
     private void OnCloseButton_Clicked(object sender, EventArgs e)
     {
+        // SKal sørge for at mainPage bliver opdateret
         throw new NotImplementedException();
     }
 
     private void OnAddValueButton_Clicked(object sender, EventArgs e)
     {
-        // Til
+        // Tilføj værdi
         throw new NotImplementedException();
+    }
+
+    private async void OnCancelButton_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
     }
 }

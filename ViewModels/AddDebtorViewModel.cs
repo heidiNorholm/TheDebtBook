@@ -9,7 +9,7 @@ public class AddDebtorViewModel : BaseViewModel
 {
     public MainPageViewModel mainPageViewModel;
     internal DataBase _database;
-    public decimal NewDebtorAmount { get; set; }
+    public double NewDebtorAmount { get; set; }
     public int NewDebtorId { get; set; }
     public string NewDebtorName { get; set; }
     public ICommand AddDebtorCommand { get; set; }
@@ -33,13 +33,20 @@ public class AddDebtorViewModel : BaseViewModel
             Name = NewDebtorName
         };
 
+        var transaction = new Transaction()
+        {
+            Amount = debtor.AmountOwed,
+            Id = debtor.Id,
+        };
+
         var inserted = await _database.AddDebtor(debtor);
+        var insertValue=await _database.AddTransaction(transaction);
         if (inserted != 0)
         {
             
             //mainPageViewModel.Debtors.Add(debtor);
             _database.AddDebtor(debtor);
-            NewDebtorAmount = Decimal.Zero;
+            NewDebtorAmount = 0;
             NewDebtorId = id++;
             NewDebtorName = String.Empty;
             RaisePropertyChanged(nameof(NewDebtorAmount), nameof(NewDebtorId), nameof(NewDebtorName));

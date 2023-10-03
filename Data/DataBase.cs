@@ -37,6 +37,7 @@ namespace TheDebtBook.Data
         private async Task Initialise()
         {
             await _connection.CreateTableAsync<Debtor>();
+            await _connection.CreateTableAsync<Transaction>();
         }
 
         public async Task<List<Debtor>> GetDebtors()
@@ -52,6 +53,12 @@ namespace TheDebtBook.Data
         }
 
         public async Task<int> AddDebtor(Debtor item)
+        {
+            return await _connection.InsertAsync(item);
+        }
+
+
+        public async Task<int> AddTransaction(Transaction item)
         {
             return await _connection.InsertAsync(item);
         }

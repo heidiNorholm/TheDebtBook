@@ -27,16 +27,19 @@
                                     <TapGestureRecognizer Tapped="OnDebtorItemTapped" CommandParameter="{Binding .}" />
                                 </Label.GestureRecognizers>
                             </Label>
-                            <Label Text="{Binding AmountOwed, StringFormat='Amount Owed: {0:C}'}" />
+                            <Label Text="{Binding AmountOwed, StringFormat='Amount Owed: {0:C}'}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnDebtorItemTapped" CommandParameter="{Binding .}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+        <!--Style="{StaticResource GlobalButtonStyle}"-->
         <Button
             Text="Add"
-            Style="{StaticResource GlobalButtonStyle}"
             Clicked="OnAddButton_Clicked"
             BackgroundColor="{Binding ThemeButtonBackgroundColor}"
             TextColor="{Binding ThemeButtonTextColor}">
