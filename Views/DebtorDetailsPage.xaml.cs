@@ -3,33 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DebtBook.ViewModels;
 
 namespace TheDebtBook.View;
 
 public partial class DebtorDetailsPage : ContentPage
 {
     public string PageTitle { get; set; }
-    public DebtorDetailsPage(Debtor selectedDebtor)
+    private MainPageViewModel mainPageViewModel;
+    public DebtorDetailsPage(MainPageViewModel mainPageViewModel, Debtor selectedDebtor)
     {
         InitializeComponent();
+        this.mainPageViewModel = mainPageViewModel;
         PageTitle = selectedDebtor.Name;
-        BindingContext=selectedDebtor;
+        BindingContext=new DebtorDetailsViewModel(mainPageViewModel,selectedDebtor);
+        //BindingContext=selectedDebtor;
     }
 
-    private void OnCloseButton_Clicked(object sender, EventArgs e)
+    private async void OnCloseButton_Clicked(object sender, EventArgs e)
     {
         // SKal sørge for at mainPage bliver opdateret
-        throw new NotImplementedException();
+
+        await Navigation.PopAsync();
     }
 
-    private void OnAddValueButton_Clicked(object sender, EventArgs e)
+    private async void OnAddValueButton_Clicked(object sender, EventArgs e)
     {
         // Tilføj værdi
-        throw new NotImplementedException();
-    }
 
-    private async void OnCancelButton_Clicked(object sender, EventArgs e)
-    {
+        OnPropertyChanged();
         await Navigation.PopAsync();
+        //throw new NotImplementedException();
     }
 }

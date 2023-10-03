@@ -38,14 +38,15 @@ public class AddDebtorViewModel : BaseViewModel
             Amount = debtor.AmountOwed,
             Id = debtor.Id,
         };
-
+        
         var inserted = await _database.AddDebtor(debtor);
         var insertValue=await _database.AddTransaction(transaction);
         if (inserted != 0)
         {
-            
+
             //mainPageViewModel.Debtors.Add(debtor);
-            _database.AddDebtor(debtor);
+            await _database.AddDebtor(debtor);
+            await _database.AddTransaction(transaction);
             NewDebtorAmount = 0;
             NewDebtorId = id++;
             NewDebtorName = String.Empty;

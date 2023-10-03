@@ -12,11 +12,11 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Text="Name"
+                Text="{Binding Name}"
                 HorizontalTextAlignment="Center"
                 FontSize="Title" 
                 HorizontalOptions="Center" 
-                Margin="0,20,0,10" /> 
+                Margin="0,20,0,10" />
             <ListView 
                 Grid.Row="1"
                 Grid.Column="0"
@@ -25,24 +25,16 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding Amount, StringFormat='Amount Owed: {0:C}'}" />
+                                <Label Text="{Binding NewValue, StringFormat='Amount Owed: {0:C}'}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
             <Button
                 Grid.Row="2"
                 Grid.Column="0"
                 Text="Close"
-                WidthRequest="200"
-                HeightRequest="50"
-                FontSize="20"
-                FontAttributes="Bold"
-                Margin="40"
-                VerticalOptions="Start"
-                HorizontalOptions="Start"
                 Clicked="OnCloseButton_Clicked">
             </Button>
 
@@ -55,15 +47,11 @@
                 </Entry>
                 <Button
                     Text="Add Value"
+                    x:Name="AddValueButton"
+                    Command="{Binding AddValueCommand}"
                     Clicked="OnAddValueButton_Clicked">
                 </Button>
             </StackLayout>
-
-            <Button
-                Grid.Row="2"
-                Grid.Column="0"
-                Text="Close"
-                Clicked="OnCancelButton_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

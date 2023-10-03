@@ -23,7 +23,7 @@ namespace TheDebtBook
         {
             if (sender is Label label && label.BindingContext is Debtor selectedDebtor)
             {
-                await Navigation.PushAsync(new DebtorDetailsPage(selectedDebtor));
+                await Navigation.PushAsync(new DebtorDetailsPage(vm,selectedDebtor));
             }
         }
     }

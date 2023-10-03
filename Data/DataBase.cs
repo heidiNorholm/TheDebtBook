@@ -9,6 +9,8 @@ namespace TheDebtBook.Data
 {
    using TheDebtBook;
    using SQLite;
+    using SQLitePCL;
+
     internal class DataBase
     {
         private readonly SQLiteAsyncConnection _connection;
@@ -16,7 +18,7 @@ namespace TheDebtBook.Data
         public DataBase()
         {
             var dataDir = FileSystem.AppDataDirectory;
-            var databasePath = Path.Combine(dataDir, "TheDebtBook1.db");
+            var databasePath = Path.Combine(dataDir, "TheDebtBook2.db");
 
             string _dbEncryptionKey = SecureStorage.GetAsync("dbKey").Result;
 
@@ -61,6 +63,12 @@ namespace TheDebtBook.Data
         public async Task<int> AddTransaction(Transaction item)
         {
             return await _connection.InsertAsync(item);
+        }
+
+        public async Task<List<Transaction>> GetTransactions(int id)
+        {
+            var query = _connection.Table<Transaction>().Where(t => t.Id == id);
+            return await _connection.Table<Transaction>().ToListAsync();
         }
 
     }

@@ -12,10 +12,10 @@ namespace TheDebtBook.View
         {
             get
             {
-                if (_mainPageViewModel == null)
-                {
-                    _mainPageViewModel = new MainPageViewModel();
-                }
+                //if (_mainPageViewModel == null)
+                //{
+                //    _mainPageViewModel = new MainPageViewModel();
+                //}
                 return _mainPageViewModel;
             }
         }
