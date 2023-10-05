@@ -1,4 +1,3 @@
-// MainPageViewModel.cs
 using System.Collections.ObjectModel;
 using System.Transactions;
 using System.Windows.Input;
@@ -18,7 +17,6 @@ namespace DebtBook.ViewModels
             get { return transactions; }
             set { SetProperty(ref transactions, value); }
         }
-        //public Debtor debtor;
 
         public ObservableCollection<DebtorDTO> Debtors
         {
@@ -32,7 +30,6 @@ namespace DebtBook.ViewModels
             Debtors=new ObservableCollection<DebtorDTO>();
             Transactions=new ObservableCollection<Transaction>();
             _ = LoadDebtorsAsync();
-  
         }
 
         public async Task LoadDebtorsAsync()
@@ -51,7 +48,6 @@ namespace DebtBook.ViewModels
                     OnPropertyChanged();
                 }
                 _ = TotalAmountForAllDebtors();
-
             }
             catch (Exception ex)
             {
@@ -59,23 +55,18 @@ namespace DebtBook.ViewModels
             }
         }
 
-
         public async Task LoadDebtorAsync()
         {
             try
             {
                 var debtorFromDatabase = await _database.GetDebtors(); // Assuming GetDebtors is an async method.
                 Debtor debtor = debtorFromDatabase.Last();
-
                 var debtorDTO = new DebtorDTO();
                 debtorDTO.AmountOwed = debtor.AmountOwed;
                 debtorDTO.Id = debtor.Id;
                 debtorDTO.Name = debtor.Name;
-
                 Debtors.Add(debtorDTO);
-
-                    // En prøve
-                    OnPropertyChanged();
+                OnPropertyChanged();
                 
             }
             catch (Exception ex)
@@ -89,27 +80,6 @@ namespace DebtBook.ViewModels
             return _database;
         }
 
-        //// Metode til at loade de transactions der er for en given person i DB
-        //public async Task LoadTransactionsAsync(int id)
-        //{
-        //    try
-        //    {
-        //        List<Transaction> transactionsFromDatabase = await _database.GetTransactions(id); // Assuming GetDebtor is an async method.
-
-        //        foreach (var transaction in transactionsFromDatabase)
-        //        {
-        //            Transactions.Add(transaction);
-        //            OnPropertyChanged();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"An error occurred: {ex.Message}");
-        //    }
-        //}
-
-
-        // Lave metode til at udregne totalAmount
         public async Task TotalAmount(int id)
         {
             double totalAmount = 0;
@@ -120,7 +90,6 @@ namespace DebtBook.ViewModels
                     if (debtor.Id == id)
                     {
                         List<Transaction> transactionsFromDatabase = await _database.GetTransactions(id); // Assuming GetDebtor is an async method.
-
                         foreach (var transaction in transactionsFromDatabase)
                         {
                             if (transaction.DebtorId == id)
@@ -129,12 +98,7 @@ namespace DebtBook.ViewModels
                             }
                         }
                         debtor.AmountOwed = totalAmount;
-
-                        // Prøve
                         RaisePropertyChanged(nameof(debtor.AmountOwed));
-                        //
-
-
                         OnPropertyChanged();
                     }
                 }
@@ -143,10 +107,7 @@ namespace DebtBook.ViewModels
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
-
         }
-
-
 
         public async Task TotalAmountForAllDebtors()
         {
@@ -172,8 +133,6 @@ namespace DebtBook.ViewModels
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
-
         }
-
     }
 }

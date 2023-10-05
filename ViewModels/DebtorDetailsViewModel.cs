@@ -44,8 +44,6 @@ public class DebtorDetailsViewModel : BaseViewModel
     public MainPageViewModel mainPageViewModel;
     internal DataBase _database;
     private ObservableCollection<Transaction> transactions;
-
-
     public ICommand AddValueCommand { get; set; }
 
     public ObservableCollection<Transaction> Transactions
@@ -60,13 +58,11 @@ public class DebtorDetailsViewModel : BaseViewModel
         Debtor = selectedDebtor;
         Name=Debtor.Name;
         TotalAmount = Debtor.AmountOwed;
-
         _database = mainPageViewModel.GetDataBase();
         Transactions = new ObservableCollection<Transaction>();
         _ = LoadTransactionsAsync(selectedDebtor.Id);
-    AddValueCommand = new Command(async () => await AddValue());
+        AddValueCommand = new Command(async () => await AddValue());
     }
-
 
     public async Task AddValue()
     {

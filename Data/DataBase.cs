@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace TheDebtBook.Data
 {
-   using TheDebtBook;
-   using SQLite;
-    using SQLitePCL;
+   //using TheDebtBook;
+   ////using SQLite;
+   //using SQLitePCL;
 
     internal class DataBase
     {
@@ -67,8 +67,6 @@ namespace TheDebtBook.Data
 
         public async Task<List<Transaction>> GetTransactions(int id)
         {
-            //var query = _connection.Table<Transaction>().Where(t => t.DebtorId == id);
-            //return await _connection.Table<Transaction>().ToListAsync();
             return await _connection.Table<Transaction>().Where(t => t.DebtorId == id).ToListAsync();
         }
 

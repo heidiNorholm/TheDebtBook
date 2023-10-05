@@ -37,7 +37,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--Style="{StaticResource GlobalButtonStyle}"-->
         <Button
             Text="Add"
             Clicked="OnAddButton_Clicked"

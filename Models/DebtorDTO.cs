@@ -25,6 +25,5 @@ namespace TheDebtBook.Models
                 RaisePropertyChanged(nameof(AmountOwed));
             }
         }
-
     }
 }

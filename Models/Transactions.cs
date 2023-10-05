@@ -9,5 +9,4 @@ public class Transaction
     [Indexed]
     public int DebtorId { get; set; }
     public double Amount { get; set; }
-    //public DateTime TransactionDate { get; set; }
 }

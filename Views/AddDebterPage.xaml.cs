@@ -10,7 +10,6 @@ public partial class AddDebterPage : ContentPage
         this.mainPageViewModel = mainPageViewModel;
         InitializeComponent();
         BindingContext = new AddDebtorViewModel(mainPageViewModel);
-
     }
 
     private async void OnCancelButton_Clicked(object sender, EventArgs e)
@@ -20,11 +19,7 @@ public partial class AddDebterPage : ContentPage
 
     private async void OnSaveButton_Clicked(object sender, EventArgs e)
     {
-        // Noget med at opdatere data i listen
-
-        // Skal måske ikke være her - er en test
         await mainPageViewModel.LoadDebtorAsync();
-        //OnPropertyChanged();
         await Navigation.PopAsync();
     }
 }
