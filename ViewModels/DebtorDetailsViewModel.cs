@@ -25,9 +25,10 @@ public class DebtorDetailsViewModel : BaseViewModel
         debtor = selectedDebtor;
         _database = mainPageViewModel.GetDataBase();
         Transactions = new ObservableCollection<Transaction>();
-        _= LoadTransactionsAsync(selectedDebtor.Id);
+        _ = mainPageViewModel.LoadTransactionsAsync(selectedDebtor.Id);
         AddValueCommand = new Command(async () => await AddValue());
-        TotalAmount(selectedDebtor.Id);
+        //TotalAmountCommand = new Command(async () => await TotalAmount());
+        //TotalAmount(selectedDebtor.Id);
     }
 
     public ObservableCollection<Transaction> Transactions
@@ -35,8 +36,6 @@ public class DebtorDetailsViewModel : BaseViewModel
         get { return transactions; }
         set { SetProperty(ref transactions, value); }
     }
-
-
 
     //public DebtorDetailsViewModel(Debtor selectedDebtor)
     //{
@@ -53,37 +52,10 @@ public class DebtorDetailsViewModel : BaseViewModel
         var insertValue = await _database.AddTransaction(transaction);
         if (insertValue != 0)
         {
-            await _database.AddTransaction(transaction);
-            RaisePropertyChanged(nameof(NewValue), nameof(debtor.Id));
+            //await _database.AddTransaction(transaction);
+            //RaisePropertyChanged(nameof(NewValue), nameof(debtor.Id));
+            RaisePropertyChanged(nameof(NewValue));
+
         }
     }
-
-
-    // Lave metode til at udregne totalAmount
-        private double TotalAmount(int id)
-        {
-            return 0;
-        }
-
-
-    // Metode til at loade de transactions der er for en given person i DB
-    public async Task LoadTransactionsAsync(int id)
-    {
-        try
-        {
-            List<Transaction> transactionsFromDatabase = await _database.GetTransactions(id); // Assuming GetDebtor is an async method.
-
-            foreach (var transaction in transactionsFromDatabase)
-            {
-                Transactions.Add(transaction);
-                OnPropertyChanged();
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"An error occurred: {ex.Message}");
-        }
-    }
-
-
 }

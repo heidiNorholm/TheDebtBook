@@ -11,12 +11,19 @@ public partial class DebtorDetailsPage : ContentPage
 {
     public string PageTitle { get; set; }
     private MainPageViewModel mainPageViewModel;
+
+    // prøve:
+    public int Id { get; set; }
+
+
     public DebtorDetailsPage(MainPageViewModel mainPageViewModel, Debtor selectedDebtor)
     {
         InitializeComponent();
         this.mainPageViewModel = mainPageViewModel;
         PageTitle = selectedDebtor.Name;
+        Id = selectedDebtor.Id;
         BindingContext=new DebtorDetailsViewModel(mainPageViewModel,selectedDebtor);
+        //_=mainPageViewModel.LoadDebtorTransactions(selectedDebtor.Id);
         //BindingContext=selectedDebtor;
     }
 
@@ -29,9 +36,15 @@ public partial class DebtorDetailsPage : ContentPage
 
     private async void OnAddValueButton_Clicked(object sender, EventArgs e)
     {
-        // Tilføj værdi
+        //mainPageViewModel.LoadDebtorTransactions()
+
+
+        // Prøve
+        await mainPageViewModel.TotalAmount(Id);
+        //
 
         OnPropertyChanged();
+
         await Navigation.PopAsync();
         //throw new NotImplementedException();
     }

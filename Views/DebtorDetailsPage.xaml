@@ -43,7 +43,7 @@
                 Grid.Column="1">
                 <Entry
                     Placeholder="Enter value"
-                    Text="{Binding Value}">
+                    Text="{Binding NewValue}">
                 </Entry>
                 <Button
                     Text="Add Value"

@@ -13,19 +13,22 @@ public class AddDebtorViewModel : BaseViewModel
     public int NewDebtorId { get; set; }
     public string NewDebtorName { get; set; }
     public ICommand AddDebtorCommand { get; set; }
-    private int id = 0;
+    private int id=0;
 
     // Properties and methods related to the Add Debtor Page
     public AddDebtorViewModel(MainPageViewModel mainPageViewModel)
     {
         this.mainPageViewModel = mainPageViewModel; // Initialize mainPageViewModel
+        NewDebtorId = mainPageViewModel.ID;
         _database = mainPageViewModel.GetDataBase();
         AddDebtorCommand = new Command(async () => await AddNewDebtor());
+        //mainPageViewModel.ID++;
     }
 
 
     public async Task AddNewDebtor()
     {
+        //mainPageViewModel.ID++;
         var debtor = new Debtor()
         {
             AmountOwed = NewDebtorAmount,
@@ -45,12 +48,15 @@ public class AddDebtorViewModel : BaseViewModel
         {
 
             //mainPageViewModel.Debtors.Add(debtor);
-            await _database.AddDebtor(debtor);
-            await _database.AddTransaction(transaction);
-            NewDebtorAmount = 0;
-            NewDebtorId = id++;
-            NewDebtorName = String.Empty;
+            //await _database.AddDebtor(debtor);
+            //await _database.AddTransaction(transaction);
+
             RaisePropertyChanged(nameof(NewDebtorAmount), nameof(NewDebtorId), nameof(NewDebtorName));
+            NewDebtorAmount = 0;
+            id++;
+            NewDebtorId = id;
+            //NewDebtorId++;
+            NewDebtorName = String.Empty;
         }
     }
 }

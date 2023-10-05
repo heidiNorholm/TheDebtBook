@@ -24,7 +24,7 @@ public partial class AddDebterPage : ContentPage
 
         // Skal måske ikke være her - er en test
         await mainPageViewModel.LoadDebtorAsync();
-        OnPropertyChanged();
+        //OnPropertyChanged();
         await Navigation.PopAsync();
     }
 }
