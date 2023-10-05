@@ -26,22 +26,16 @@ public partial class DebtorDetailsPage : ContentPage
     private async void OnCloseButton_Clicked(object sender, EventArgs e)
     {
         // SKal sørge for at mainPage bliver opdateret
-
+        await mainPageViewModel.TotalAmountForAllDebtors();
+        await mainPageViewModel.LoadDebtorAsync();
+        //OnPropertyChanged();
         await Navigation.PopAsync();
     }
 
     private async void OnAddValueButton_Clicked(object sender, EventArgs e)
     {
-        //mainPageViewModel.LoadDebtorTransactions()
-
-
-        // Prøve
         await mainPageViewModel.TotalAmount(Id);
-        //
-
         OnPropertyChanged();
-
         await Navigation.PopAsync();
-        //throw new NotImplementedException();
     }
 }

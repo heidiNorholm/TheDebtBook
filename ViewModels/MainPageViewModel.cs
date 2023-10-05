@@ -55,10 +55,7 @@ namespace DebtBook.ViewModels
                     debtorDTO.Id = debtor.Id;
                     debtorDTO.Name= debtor.Name;
                     Debtors.Add(debtorDTO);
-
-                    // En prøve
                     OnPropertyChanged();
-
                 }
                 _ = TotalAmountForAllDebtors();
 

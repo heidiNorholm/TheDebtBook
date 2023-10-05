@@ -20,12 +20,12 @@
             <ListView 
                 Grid.Row="1"
                 Grid.Column="0"
-                ItemsSource="{Binding Debtors}">
+                ItemsSource="{Binding Transactions}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding NewValue, StringFormat='Transaction amount: {0:C}'}" />
+                                <Label Text="{Binding Amount, StringFormat='Transaction amount: {0:C}'}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

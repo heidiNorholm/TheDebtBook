@@ -9,7 +9,22 @@ public class DebtorDetailsViewModel : BaseViewModel
 {
     // Properties and methods related to the Debtor Details Page
 
-    public double NewValue { get; set; }
+    private double newValue;
+    public double NewValue 
+    {
+        get
+        { 
+            return newValue;
+        }
+        set
+        {
+            if(value !=newValue)
+            {
+                newValue = value;
+                RaisePropertyChanged(nameof(NewValue));
+            }
+        }
+    }
     public DebtorDTO Debtor { get; set; }
     public string Name { get; set; }
     public double TotalAmount { get; set; }
