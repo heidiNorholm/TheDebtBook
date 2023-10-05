@@ -10,16 +10,16 @@ public class AddDebtorViewModel : BaseViewModel
     public MainPageViewModel mainPageViewModel;
     internal DataBase _database;
     public double NewDebtorAmount { get; set; }
-    public int NewDebtorId { get; set; }
+    //public int NewDebtorId { get; set; }
     public string NewDebtorName { get; set; }
     public ICommand AddDebtorCommand { get; set; }
-    private int id=0;
+    //private int id=0;
 
     // Properties and methods related to the Add Debtor Page
     public AddDebtorViewModel(MainPageViewModel mainPageViewModel)
     {
         this.mainPageViewModel = mainPageViewModel; // Initialize mainPageViewModel
-        NewDebtorId = mainPageViewModel.ID;
+        //NewDebtorId = mainPageViewModel.ID;
         _database = mainPageViewModel.GetDataBase();
         AddDebtorCommand = new Command(async () => await AddNewDebtor());
         //mainPageViewModel.ID++;
@@ -32,17 +32,18 @@ public class AddDebtorViewModel : BaseViewModel
         var debtor = new Debtor()
         {
             AmountOwed = NewDebtorAmount,
-            Id = NewDebtorId,
+            //Id = NewDebtorId,
             Name = NewDebtorName
         };
+        var inserted = await _database.AddDebtor(debtor);
 
         var transaction = new Transaction()
         {
             Amount = debtor.AmountOwed,
-            Id = debtor.Id,
+            DebtorId = debtor.Id,
         };
         
-        var inserted = await _database.AddDebtor(debtor);
+
         var insertValue=await _database.AddTransaction(transaction);
         if (inserted != 0)
         {
@@ -51,10 +52,10 @@ public class AddDebtorViewModel : BaseViewModel
             //await _database.AddDebtor(debtor);
             //await _database.AddTransaction(transaction);
 
-            RaisePropertyChanged(nameof(NewDebtorAmount), nameof(NewDebtorId), nameof(NewDebtorName));
+            RaisePropertyChanged(nameof(NewDebtorAmount), nameof(NewDebtorName));
             NewDebtorAmount = 0;
-            id++;
-            NewDebtorId = id;
+            //id++;
+            //NewDebtorId = id;
             //NewDebtorId++;
             NewDebtorName = String.Empty;
         }

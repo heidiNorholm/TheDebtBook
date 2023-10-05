@@ -3,14 +3,16 @@ using DebtBook.ViewModels;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TheDebtBook.Data;
+using TheDebtBook.Models;
 
 public class DebtorDetailsViewModel : BaseViewModel
 {
     // Properties and methods related to the Debtor Details Page
 
-    //public double Value { get; set; }
     public double NewValue { get; set; }
-    public Debtor debtor;
+    public DebtorDTO Debtor { get; set; }
+    public string Name { get; set; }
+    public double TotalAmount { get; set; }
 
     public MainPageViewModel mainPageViewModel;
     internal DataBase _database;
@@ -19,43 +21,56 @@ public class DebtorDetailsViewModel : BaseViewModel
 
     public ICommand AddValueCommand { get; set; }
 
-    public DebtorDetailsViewModel(MainPageViewModel mainPageViewModel,Debtor selectedDebtor)
-    {
-        this.mainPageViewModel= mainPageViewModel;
-        debtor = selectedDebtor;
-        _database = mainPageViewModel.GetDataBase();
-        Transactions = new ObservableCollection<Transaction>();
-        _ = mainPageViewModel.LoadTransactionsAsync(selectedDebtor.Id);
-        AddValueCommand = new Command(async () => await AddValue());
-        //TotalAmountCommand = new Command(async () => await TotalAmount());
-        //TotalAmount(selectedDebtor.Id);
-    }
-
     public ObservableCollection<Transaction> Transactions
     {
         get { return transactions; }
         set { SetProperty(ref transactions, value); }
     }
 
-    //public DebtorDetailsViewModel(Debtor selectedDebtor)
-    //{
-    //    debtor=selectedDebtor;
-    //}
+    public DebtorDetailsViewModel(MainPageViewModel mainPageViewModel,DebtorDTO selectedDebtor)
+    {
+        this.mainPageViewModel= mainPageViewModel;
+        Debtor = selectedDebtor;
+        Name=Debtor.Name;
+        TotalAmount = Debtor.AmountOwed;
+
+        _database = mainPageViewModel.GetDataBase();
+        Transactions = new ObservableCollection<Transaction>();
+        _ = LoadTransactionsAsync(selectedDebtor.Id);
+    AddValueCommand = new Command(async () => await AddValue());
+    }
+
 
     public async Task AddValue()
     {
         var transaction = new Transaction()
         {
             Amount = NewValue,
-            Id = debtor.Id,
+            DebtorId = Debtor.Id,
         };
         var insertValue = await _database.AddTransaction(transaction);
         if (insertValue != 0)
         {
-            //await _database.AddTransaction(transaction);
-            //RaisePropertyChanged(nameof(NewValue), nameof(debtor.Id));
             RaisePropertyChanged(nameof(NewValue));
+        }
+    }
 
+    public async Task LoadTransactionsAsync(int id)
+    {
+        try
+        {
+            List<Transaction> transactionsFromDatabase = await _database.GetTransactions(id); // Assuming GetDebtor is an async method.
+
+            foreach (var transaction in transactionsFromDatabase)
+            {
+                Transactions.Add(transaction);
+                NewValue = transaction.Amount;
+                OnPropertyChanged();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
 }

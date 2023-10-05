@@ -18,7 +18,7 @@ namespace TheDebtBook.Data
         public DataBase()
         {
             var dataDir = FileSystem.AppDataDirectory;
-            var databasePath = Path.Combine(dataDir, "TheDebtBook24.db");
+            var databasePath = Path.Combine(dataDir, "TheDebtBook30.db");
 
             string _dbEncryptionKey = SecureStorage.GetAsync("dbKey").Result;
 
@@ -67,7 +67,7 @@ namespace TheDebtBook.Data
 
         public async Task<List<Transaction>> GetTransactions(int id)
         {
-            var query = _connection.Table<Transaction>().Where(t => t.Id == id);
+            var query = _connection.Table<Transaction>().Where(t => t.DebtorId == id);
             return await _connection.Table<Transaction>().ToListAsync();
         }
 

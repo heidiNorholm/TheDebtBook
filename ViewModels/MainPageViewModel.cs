@@ -3,19 +3,18 @@ using System.Collections.ObjectModel;
 using System.Transactions;
 using System.Windows.Input;
 using TheDebtBook.Data;
-
+using TheDebtBook.Models;
 
 namespace DebtBook.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private ObservableCollection<Debtor> debtors;
+        private ObservableCollection<DebtorDTO> debtors;
         internal DataBase _database;
         private ObservableCollection<Transaction> transactions;
 
-        // prøve
-        public int ID { get; set; } = 0;
-        //
+
+
 
 
 
@@ -28,7 +27,7 @@ namespace DebtBook.ViewModels
         }
         //public Debtor debtor;
 
-        public ObservableCollection<Debtor> Debtors
+        public ObservableCollection<DebtorDTO> Debtors
         {
             get { return debtors; }
             set { SetProperty(ref debtors, value); }
@@ -37,10 +36,10 @@ namespace DebtBook.ViewModels
         public MainPageViewModel()
         {
             _database = new DataBase();
-            Debtors=new ObservableCollection<Debtor>();
+            Debtors=new ObservableCollection<DebtorDTO>();
             Transactions=new ObservableCollection<Transaction>();
             _ = LoadDebtorsAsync();
-            
+  
         }
 
         public async Task LoadDebtorsAsync()
@@ -51,11 +50,18 @@ namespace DebtBook.ViewModels
 
                 foreach (var debtor in debtorsFromDatabase)
                 {
-                    Debtors.Add(debtor);
+                    var debtorDTO = new DebtorDTO();
+                    debtorDTO.AmountOwed = debtor.AmountOwed;
+                    debtorDTO.Id = debtor.Id;
+                    debtorDTO.Name= debtor.Name;
+                    Debtors.Add(debtorDTO);
 
                     // En prøve
                     OnPropertyChanged();
+
                 }
+                _ = TotalAmountForAllDebtors();
+
             }
             catch (Exception ex)
             {
@@ -70,8 +76,13 @@ namespace DebtBook.ViewModels
             {
                 var debtorFromDatabase = await _database.GetDebtors(); // Assuming GetDebtors is an async method.
                 Debtor debtor = debtorFromDatabase.Last();
-  
-                    Debtors.Add(debtor);
+
+                var debtorDTO = new DebtorDTO();
+                debtorDTO.AmountOwed = debtor.AmountOwed;
+                debtorDTO.Id = debtor.Id;
+                debtorDTO.Name = debtor.Name;
+
+                Debtors.Add(debtorDTO);
 
                     // En prøve
                     OnPropertyChanged();
@@ -122,7 +133,7 @@ namespace DebtBook.ViewModels
 
                         foreach (var transaction in transactionsFromDatabase)
                         {
-                            if (transaction.Id == id)
+                            if (transaction.DebtorId == id)
                             {
                                 totalAmount += transaction.Amount;
                             }
@@ -136,6 +147,38 @@ namespace DebtBook.ViewModels
 
                         OnPropertyChanged();
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+
+        }
+
+
+
+        public async Task TotalAmountForAllDebtors()
+        {
+            try
+            {
+                foreach (var debtor in Debtors)
+                {
+                    double totalAmount = 0;
+                    List<Transaction> transactionsFromDatabase = await _database.GetTransactions(debtor.Id); // Assuming GetDebtor is an async method.
+
+                        foreach (var transaction in transactionsFromDatabase)
+                        {
+                            if (transaction.DebtorId == debtor.Id)
+                            {
+                                totalAmount += transaction.Amount;
+                            }
+                        }
+                        debtor.AmountOwed = totalAmount;
+
+                        RaisePropertyChanged(nameof(debtor.AmountOwed));
+
+                        OnPropertyChanged();
                 }
             }
             catch (Exception ex)

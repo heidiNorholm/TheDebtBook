@@ -4,27 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DebtBook.ViewModels;
+using TheDebtBook.Models;
 
 namespace TheDebtBook.View;
 
 public partial class DebtorDetailsPage : ContentPage
 {
-    public string PageTitle { get; set; }
     private MainPageViewModel mainPageViewModel;
 
     // prøve:
     public int Id { get; set; }
 
 
-    public DebtorDetailsPage(MainPageViewModel mainPageViewModel, Debtor selectedDebtor)
+    public DebtorDetailsPage(MainPageViewModel mainPageViewModel, DebtorDTO selectedDebtor)
     {
         InitializeComponent();
         this.mainPageViewModel = mainPageViewModel;
-        PageTitle = selectedDebtor.Name;
-        Id = selectedDebtor.Id;
         BindingContext=new DebtorDetailsViewModel(mainPageViewModel,selectedDebtor);
-        //_=mainPageViewModel.LoadDebtorTransactions(selectedDebtor.Id);
-        //BindingContext=selectedDebtor;
     }
 
     private async void OnCloseButton_Clicked(object sender, EventArgs e)

@@ -2,7 +2,12 @@ using SQLite;
 
 public class Transaction
 {
-    public int Id { get; set; }
+    [PrimaryKey, AutoIncrement]
+
+    public int TransactionId { get; set; }
+
+    [Indexed]
+    public int DebtorId { get; set; }
     public double Amount { get; set; }
     //public DateTime TransactionDate { get; set; }
 }

@@ -1,4 +1,5 @@
 ﻿using DebtBook.ViewModels;
+using TheDebtBook.Models;
 using TheDebtBook.View;
 
 namespace TheDebtBook
@@ -21,7 +22,7 @@ namespace TheDebtBook
 
         private async void OnDebtorItemTapped(object sender, TappedEventArgs e)
         {
-            if (sender is Label label && label.BindingContext is Debtor selectedDebtor)
+            if (sender is Label label && label.BindingContext is DebtorDTO selectedDebtor)
             {
                 await Navigation.PushAsync(new DebtorDetailsPage(vm,selectedDebtor));
             }

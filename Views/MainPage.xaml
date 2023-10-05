@@ -22,7 +22,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                            <Style TargetType="Label" Text="{Binding Name}" FontAttributes="Bold">
+                            <Label Text="{Binding Name}" FontAttributes="Bold">
                                 <Label.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="OnDebtorItemTapped" CommandParameter="{Binding .}" />
                                 </Label.GestureRecognizers>
@@ -38,7 +38,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <!--Style="{StaticResource GlobalButtonStyle}"-->
-        <Style TargetType= "Button"
+        <Button
             Text="Add"
             Clicked="OnAddButton_Clicked"
             BackgroundColor="{Binding ThemeButtonBackgroundColor}"

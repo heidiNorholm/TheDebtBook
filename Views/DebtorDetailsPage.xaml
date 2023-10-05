@@ -25,7 +25,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-                                <Label Text="{Binding NewValue, StringFormat='Amount Owed: {0:C}'}" />
+                                <Label Text="{Binding NewValue, StringFormat='Transaction amount: {0:C}'}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
