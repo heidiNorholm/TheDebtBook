@@ -26,7 +26,7 @@ public partial class DebtorDetailsPage : ContentPage
     private async void OnCloseButton_Clicked(object sender, EventArgs e)
     {
         // SKal sørge for at mainPage bliver opdateret
-        await mainPageViewModel.TotalAmountForAllDebtors();
+        //await mainPageViewModel.TotalAmountForAllDebtors(); //Bliver allerede kaldt i LoadDebtorAsync()
         await mainPageViewModel.LoadDebtorAsync();
         //OnPropertyChanged();
         await Navigation.PopAsync();
@@ -36,6 +36,7 @@ public partial class DebtorDetailsPage : ContentPage
     {
         await mainPageViewModel.TotalAmount(Id);
         OnPropertyChanged();
+        //await Task.Delay(100);
         await Navigation.PopAsync();
     }
 }

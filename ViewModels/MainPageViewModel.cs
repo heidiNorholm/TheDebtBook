@@ -96,24 +96,24 @@ namespace DebtBook.ViewModels
             return _database;
         }
 
-        // Metode til at loade de transactions der er for en given person i DB
-        public async Task LoadTransactionsAsync(int id)
-        {
-            try
-            {
-                List<Transaction> transactionsFromDatabase = await _database.GetTransactions(id); // Assuming GetDebtor is an async method.
+        //// Metode til at loade de transactions der er for en given person i DB
+        //public async Task LoadTransactionsAsync(int id)
+        //{
+        //    try
+        //    {
+        //        List<Transaction> transactionsFromDatabase = await _database.GetTransactions(id); // Assuming GetDebtor is an async method.
 
-                foreach (var transaction in transactionsFromDatabase)
-                {
-                    Transactions.Add(transaction);
-                    OnPropertyChanged();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-            }
-        }
+        //        foreach (var transaction in transactionsFromDatabase)
+        //        {
+        //            Transactions.Add(transaction);
+        //            OnPropertyChanged();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"An error occurred: {ex.Message}");
+        //    }
+        //}
 
 
         // Lave metode til at udregne totalAmount
@@ -166,10 +166,7 @@ namespace DebtBook.ViewModels
 
                         foreach (var transaction in transactionsFromDatabase)
                         {
-                            if (transaction.DebtorId == debtor.Id)
-                            {
-                                totalAmount += transaction.Amount;
-                            }
+                                totalAmount += transaction.Amount;                          
                         }
                         debtor.AmountOwed = totalAmount;
 

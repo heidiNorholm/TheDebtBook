@@ -27,7 +27,19 @@ public class DebtorDetailsViewModel : BaseViewModel
     }
     public DebtorDTO Debtor { get; set; }
     public string Name { get; set; }
-    public double TotalAmount { get; set; }
+
+    private double totalAmount;
+    public double TotalAmount
+    { get
+        { 
+            return totalAmount; 
+        }
+        set 
+        { 
+            totalAmount = value;
+            OnPropertyChanged(nameof(TotalAmount));
+        }
+    }
 
     public MainPageViewModel mainPageViewModel;
     internal DataBase _database;
