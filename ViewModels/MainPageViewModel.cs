@@ -13,13 +13,6 @@ namespace DebtBook.ViewModels
         internal DataBase _database;
         private ObservableCollection<Transaction> transactions;
 
-
-
-
-
-
-        //public ICommand TotalAmountCommand { get; set; }
-
         public ObservableCollection<Transaction> Transactions
         {
             get { return transactions; }

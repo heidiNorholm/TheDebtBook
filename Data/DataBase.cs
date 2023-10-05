@@ -18,7 +18,7 @@ namespace TheDebtBook.Data
         public DataBase()
         {
             var dataDir = FileSystem.AppDataDirectory;
-            var databasePath = Path.Combine(dataDir, "TheDebtBook30.db");
+            var databasePath = Path.Combine(dataDir, "TheDebtBook31.db");
 
             string _dbEncryptionKey = SecureStorage.GetAsync("dbKey").Result;
 
